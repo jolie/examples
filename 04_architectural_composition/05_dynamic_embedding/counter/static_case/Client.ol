@@ -1,4 +1,7 @@
-// Client.ol works with only one instance because of the hardcoded callback port (4002)
+/* Client2.ol works with multiple instances because of the dynamic callback port
+ which needs to be specified on invocation time:
+ jolie -C ClientLocationConstant=\"socket://localhost:4003\" Client2.ol
+ */
 
 include "console.iol"
 include "embedderInterface.iol"
@@ -13,7 +16,7 @@ interface CounterClientInterface{
 }
 
 inputPort CounterClient{
-	Location: "socket://localhost:4002"
+	Location: ClientLocationConstant
 	Protocol: sodep
 	Interfaces: CounterClientInterface
 }
@@ -23,6 +26,7 @@ outputPort CounterEmbedder{
 	Protocol: sodep
 	Interfaces: CounterEmbedderInterface
 }
+
 
 main
 {

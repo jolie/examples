@@ -19,6 +19,8 @@ outputPort CounterClient{
 	Interfaces: CounterClientInterface
 }
 
+/* only one instance of the counter will be embedded and it will be equally available from all the
+service sessions */
 embedded {
 	Jolie: "CounterService.ol" in CounterService
 }
@@ -31,6 +33,9 @@ main
 	CounterClient.location = location;
 	println@Console( "New counter session started" )();
 	while( true ){
+		/* always the same instance of the CounterService will reply to this request
+		   as a result the counter will be share among all the active sessions
+		*/
 		inc@CounterService()( counterState );
 		receiveCount@CounterClient( counterState );
 		sleep@Time( 1000 )()

@@ -50,11 +50,13 @@ inputPort AggregatorInput {
 Location: Location_Aggregator
 Protocol: sodep
 Interfaces: AggregatorInterface
+/* here the aggregation exploits collection for grouping Priter1 and Printer2 */
 Aggregates: { Printer1, Printer2 } with AuthenticationInterfaceExtender, Fax
 }
 
 courier AggregatorInput {
 	[ interface PrinterInterface( request ) ] {
+		/* depending on the key the message will be forwared to Printer1 or Printer2 */
 		if ( request.key == "0000" ) {
 			log@Logger( "Request for printer service 1" );
 			forward Printer1( request )
@@ -62,11 +64,13 @@ courier AggregatorInput {
 			log@Logger( "Request for printer service 2" );
 			forward Printer2( request )
 		} else {
+			/* in this case the message is discarded and a log is printed out on the console */
 			log@Logger( "Request with invalid key: " + request.key )
 		}
 	}
 
 	[ interface FaxInterface( request ) ] {
+		/* in case of messages for service Fax, a log is printed out on the console and then forwarded */
 		log@Logger( "Received a request for fax service" );
 		forward ( request )
 	}

@@ -29,11 +29,15 @@ main
 	CounterClient.location = location;
 	println@Console( "New counter session started" )();
 
+	/* for each session started, a unique and distinct CounterService will be dynamically embedded */
 	embedInfo.type = "Jolie";
 	embedInfo.filepath = "CounterService.ol";
 	loadEmbeddedService@Runtime( embedInfo )( CounterService.location );
 	start@CounterService();
 	while( true ){
+		/* this invocation is sent to the specific CounterService of the current session
+		   each counter is indipendent and it will serve a separate sessions
+		*/
 		inc@CounterService()( counterState );
 		receiveCount@CounterClient( counterState );
 		sleep@Time( 1000 )()
