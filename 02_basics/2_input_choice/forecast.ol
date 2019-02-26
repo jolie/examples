@@ -1,4 +1,4 @@
-include "forecastInterface.iol"
+include "interfaces/forecastInterface.iol"
 include "config.iol"
 include "console.iol"
 

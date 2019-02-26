@@ -1,6 +1,6 @@
-include "getinfoInterface.iol"
-include "forecastInterface.iol"
-include "trafficInterface.iol"
+include "interfaces/infoInterface.iol"
+include "interfaces/forecastInterface.iol"
+include "interfaces/trafficInterface.iol"
 include "config.iol"
 include "console.iol"
 
