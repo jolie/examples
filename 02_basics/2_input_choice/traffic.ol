@@ -1,4 +1,4 @@
-include "trafficInterface.iol"
+include "interfaces/trafficInterface.iol"
 include "config.iol"
 include "console.iol"
 
