@@ -1,4 +1,4 @@
-include "trafficInterface.iol"
+include "interfaces/trafficInterface.iol"
 include "config.iol"
 include "console.iol"
 
@@ -18,7 +18,7 @@ main {
     } else if ( request.city == "Cesena" ) {
       response = "Low"
     } else {
-      response = "Medium"
+      response = "Undefined"
     }
   }
 }

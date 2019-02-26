@@ -1,6 +1,6 @@
-include "getinfoInterface.iol"
-include "forecastInterface.iol"
-include "trafficInterface.iol"
+include "interfaces/infoInterface.iol"
+include "interfaces/forecastInterface.iol"
+include "interfaces/trafficInterface.iol"
 include "config.iol"
 include "console.iol"
 
@@ -24,13 +24,9 @@ Protocol: sodep
 Interfaces: GetInfoInterface
 }
 
-/* here getInfo realizes the orchestration running in parallel the three calls
-   Only when the three parallel activities are finished the parallel can end */
 main {
   getInfo(request)(response) {
     getTemperature@Forecast( request )( response.temperature )
-    |
-    getWind@Forecast( request )( response.wind )
     |
     getData@Traffic( request )( response.traffic )
   };

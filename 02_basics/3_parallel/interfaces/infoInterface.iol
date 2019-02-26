@@ -5,7 +5,6 @@ type GetInfoRequest: void {
 type GetInfoResponse: void {
   .temperature: double
   .traffic: string
-  .wind: double
 }
 
 interface GetInfoInterface {
