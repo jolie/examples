@@ -4,7 +4,9 @@ Make sure you have Docker installed.
 
 From a shell opened in this folder, run the following:
 
-```docker build -t hello .```
+```
+docker build -t hello .
+```
 
 This creates a docker image called `hello` is the name of the image.
 
