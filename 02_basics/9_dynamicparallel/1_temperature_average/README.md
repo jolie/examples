@@ -14,7 +14,7 @@ where `socket://localhost:10000` is the listening location for the given sensor,
 
 If you want to simulate a bunch of sensors in a single command you can run:
 
-c
+`jolie sensor_cluster_simulator.ol NUM`
 
 where *NUM* is the number of sensors.
 
