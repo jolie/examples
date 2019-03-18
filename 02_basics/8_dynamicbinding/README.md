@@ -9,4 +9,4 @@
 
 example:
 
-`jolie user.ol socket://localhost:9000 testChat Bob`
+`jolie user.ol socket://localhost:10000 testChat Bob`
