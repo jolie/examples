@@ -19,9 +19,9 @@ main {
 
     [ getAverageTemperature( request )( response ) {
         index = 0;
-        foreach( sensor : global.sensor_hashlist ) {
+        foreach( sensor : global.sensor_hashmap ) {
             /* creates the vector for ranging over in the spawn primitive */
-            sensor_vector[ index ] << global.sensor_hashlist.( sensor );
+            sensor_vector[ index ] << global.sensor_hashmap.( sensor );
             index++
         };
         println@Console( "Contacting " + #sensor_vector +  " sensors" )();
@@ -31,7 +31,7 @@ main {
                 install( IOException =>
                     /* de-register a sensor if it does not respond */
                     println@Console("Sensor " + sensor_vector[ i ].id + " does not respond. Removed.")();
-                    undef( global.sensor_hashlist.( sensor_vector[ i ].id ) )
+                    undef( global.sensor_hashmap.( sensor_vector[ i ].id ) )
                 );
                 Sensor.location = sensor_vector[ i ].location;
                 println@Console( "Contacting sensor " + sensor_vector[ i ].id + " at location " + sensor_vector[ i ].location )();
@@ -49,8 +49,8 @@ main {
     }]
 
     [ registerSensor( request )( response ) {
-        global.sensor_hashlist.( request.id ).location = request.location;
-        global.sensor_hashlist.( request.id ).id = request.id;
+        global.sensor_hashmap.( request.id ).location = request.location;
+        global.sensor_hashmap.( request.id ).id = request.id;
         println@Console("Registered sensor " + request.id + " at location " + request.location )()
     }]
 }
