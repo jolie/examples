@@ -1,7 +1,6 @@
 include "TemperatureSensorInterface.iol"
 include "TemperatureCollectorInterface.iol"
 include "console.iol"
-include "string_utils.iol"
 
 outputPort Sensor {
   Protocol: sodep
@@ -41,7 +40,6 @@ main {
             }
         }
         ;
-        valueToPrettyString@StringUtils( resultVar )();
         /* calculate the average */
         for( y = 0, y < #resultVar, y++ ) {
             total = total + resultVar[ y ]
