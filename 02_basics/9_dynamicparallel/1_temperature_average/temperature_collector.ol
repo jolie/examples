@@ -28,15 +28,17 @@ main {
         println@Console( "Contacting " + #sensor_vector +  " sensors" )();
         /* calling the spawn primitive */
         spawn( i over #sensor_vector ) in resultVar {
-            install( IOException =>
-                /* de-register a sensor if it does not respond */
-                println@Console("Sensor " + sensor_vector[ i ].id + " does not respond. Removed.")();
-                undef( global.sensor_hashlist.( sensor_vector[ i ].id ) )
-            );
-            Sensor.location = sensor_vector[ i ].location;
-            println@Console( "Contacting sensor " + sensor_vector[ i ].id + " at location " + sensor_vector[ i ].location )();
-            getTemperature@Sensor()( resultVar );
-            println@Console( "Sensor " + sensor_vector[ i ].id + " returns temperature " + resultVar )()
+            scope( call_sensor ) {
+                install( IOException =>
+                    /* de-register a sensor if it does not respond */
+                    println@Console("Sensor " + sensor_vector[ i ].id + " does not respond. Removed.")();
+                    undef( global.sensor_hashlist.( sensor_vector[ i ].id ) )
+                );
+                Sensor.location = sensor_vector[ i ].location;
+                println@Console( "Contacting sensor " + sensor_vector[ i ].id + " at location " + sensor_vector[ i ].location )();
+                getTemperature@Sensor()( resultVar );
+                println@Console( "Sensor " + sensor_vector[ i ].id + " returns temperature " + resultVar )()
+            }
         }
         ;
         valueToPrettyString@StringUtils( resultVar )();
