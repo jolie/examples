@@ -7,6 +7,7 @@
 
   `jolie user.ol <listeningLocation> <chatName> <username>`
 
-  example:
-  
-  `jolie user.ol socket://localhost:9000 testChat Bob`
+example:
+
+`jolie user.ol socket://localhost:10000 testChat Bob`
+
