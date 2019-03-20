@@ -158,14 +158,16 @@ main {
           }
       }
       ;
-      usr.places -> places;
-      usr.status_game = "end";
-      User.location = circle_participant.location;
-      usr.message = "";
-      syncPlaces@User( usr );
-      User.location = cross_participant.location;
-      usr.message = "";
-      syncPlaces@User( usr )
+      if ( !circle_wins && ! cross_wins ) {
+          usr.places -> places;
+          usr.status_game = "end";
+          User.location = circle_participant.location;
+          usr.message = "";
+          syncPlaces@User( usr );
+          User.location = cross_participant.location;
+          usr.message = "";
+          syncPlaces@User( usr )
+      }
   }
 
   [ listOpenGames( request )( response ) {
