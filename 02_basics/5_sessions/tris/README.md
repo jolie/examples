@@ -3,7 +3,7 @@ This is a simple implementation of the tris game in Jolie.
 
 Run the game server with the following command:
 
-`jolie chat_registry.ol`
+`jolie tris.ol`
 
 Run the two players in different shells, specifying the listening location as a constant in the command line, ex:
 
