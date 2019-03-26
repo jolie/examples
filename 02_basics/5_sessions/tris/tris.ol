@@ -182,7 +182,7 @@ main {
       new_game = false;
       if ( !is_defined( global.games.( request.game ) ) ) {
           new_game = true;
-          csets.token = token = new;
+          token = new;
           global.games.( token ) = true;
           global.games.( token ).circle_participant = new;
           global.games.( token ).circle_participant.location = request.user_location;
