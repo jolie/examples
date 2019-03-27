@@ -42,10 +42,8 @@ init {
 
 main {
     login( request )( response ) {
-        csets.session_id = new;
         with( open ) {
-            .application_name = application_name;
-            .session_id = csets.session_id
+            .application_name = application_name
         };
         openAuthentication@IdentityProvider( open )( open_result );
         csets.auth_token = response.auth_token = open_result.auth_token;
@@ -53,10 +51,11 @@ main {
     }
     ;
     /* result received from identity provider */
-    [ success()() {
+    sid.session_id = csets.session_id = new;
+    [ success()( sid ) {
         login_result = true
     }]
-    [ failure()() {
+    [ failure()( sid ) {
         login_result = false
     }]
     ;
