@@ -61,7 +61,6 @@ init {
 
 main {
     [ openAuthentication( request )( response ) {
-          session_id = request.session_id;
           _check_application;
           response.auth_token = csets.auth_token = new;
           response.identity_provider_location = IDENTITY_PROVIDER_LOCATION
@@ -73,9 +72,11 @@ main {
             /* binding the outputPort of the application */
             Application.location = enabled_applications[ application_id ].location;
             if ( auth ) {
-                  success@Application( { .auth_token = csets.auth_token })()
+                  success@Application( { .auth_token = csets.auth_token })( result );
+                  session_id = result.session_id
             } else {
-                  failure@Application( { .auth_token = csets.auth_token })()
+                  failure@Application( { .auth_token = csets.auth_token })( result );
+                  session_id = result.session_id
             };
             /* sending the location where retrieving the result */
             with( response ) {

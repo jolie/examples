@@ -11,7 +11,6 @@ type AuthenticateResponse: void {
 }
 
 type OpenAuthenticationRequest: void {
-    .session_id: string
     .application_name: string
 }
 type OpenAuthenticationResponse: void {
