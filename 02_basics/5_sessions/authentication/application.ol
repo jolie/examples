@@ -53,10 +53,10 @@ main {
     }
     ;
     /* result received from identity provider */
-    [ success( request )() {
+    [ success()() {
         login_result = true
     }]
-    [ failure( request )() {
+    [ failure()() {
         login_result = false
     }]
     ;
