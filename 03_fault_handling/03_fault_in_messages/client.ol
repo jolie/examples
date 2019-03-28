@@ -12,6 +12,6 @@ main
 	install( NumberException=>
 		println@Console( main.NumberException.exceptionMessage )()
 	);
-	guess@Guess( args[0] )( response );
+	guess@Guess( int( args[0] ) )( response );
 	println@Console( response )()
 }
