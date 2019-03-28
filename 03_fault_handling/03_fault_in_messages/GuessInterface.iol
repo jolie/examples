@@ -6,5 +6,5 @@ type NumberExceptionType: void{
 
 interface GuessInterface {
 	/* note that the fault declaration now, specifies also the type of the fault */
-	RequestResponse: guess throws NumberException( NumberExceptionType )
+	RequestResponse: guess( int )( string ) throws NumberException( NumberExceptionType )
 }

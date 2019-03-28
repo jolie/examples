@@ -11,7 +11,7 @@ inputPort Guess {
 }
 
 init {
-	secret = 3;
+	secret = int(args[0]);
   install( FaultMain =>
 		println@Console( "A wrong number has been sent!" )()
 	);
