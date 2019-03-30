@@ -11,20 +11,19 @@ Interfaces: ServerInterface
 
 main {
   scope( main_scope ) {
-    install( default => comp( calling ) )
+    install( default => println@Console("Received fault " + main_scope.default )();comp( calling ) )
     ;
     {
         scope( calling ) {
             install( this => println@Console( "Before calling" )() );
             hello@Server("hello")( response )
             [
-                  this => println@Console("ciao")()
-            ];
-            install( this => cH; println@Console( "After calling" )() )
+                  this => println@Console("Installed Solicit-response handler")()
+            ]
         }
         |
         {
-          sleep@Time( 1000 )();
+          sleep@Time( int( args[0]) )();
           println@Console("Raising a fault...")();
           throw( Fault )
         }
