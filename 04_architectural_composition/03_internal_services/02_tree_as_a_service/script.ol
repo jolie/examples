@@ -52,6 +52,6 @@ service TreeInternalService
 
 main
 {
-  tree@TreeInternalService( { .file = "/examples" } )( res );
+  tree@TreeInternalService( { .file = args[0] } )( res );
   println@Console( res )()
 }
