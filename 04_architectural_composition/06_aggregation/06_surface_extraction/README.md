@@ -1,4 +1,4 @@
-# Example of Aggregation
+# Programmatic surface extraction
 
 In this example we show how to extract a surface programmatically.
 Run the example by using the following command:
