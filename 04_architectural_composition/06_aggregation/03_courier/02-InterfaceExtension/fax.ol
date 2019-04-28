@@ -5,7 +5,7 @@ include "console.iol"
 execution { concurrent }
 
 inputPort FaxInput {
-Location: "local"
+Location: Location_Fax
 Protocol: sodep
 Interfaces: FaxInterface
 }

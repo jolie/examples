@@ -5,5 +5,5 @@ type FaxRequest:void {
 
 interface FaxInterface {
 RequestResponse:
-	fax(FaxRequest)( void )
+	fax(FaxRequest)(void)
 }
