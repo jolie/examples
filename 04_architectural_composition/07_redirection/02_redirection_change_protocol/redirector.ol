@@ -6,12 +6,12 @@ include "SubInterface.iol"
 
 outputPort SubService {
 Location: Location_Sub
-Protocol: sodep
+Protocol: http
 }
 
 outputPort SumService {
 Location: Location_Sum
-Protocol: sodep
+Protocol: http
 }
 
 inputPort Redirector {

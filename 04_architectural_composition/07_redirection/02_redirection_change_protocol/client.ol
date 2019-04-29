@@ -13,5 +13,5 @@ main {
   rq.x = double( args[ 0 ] );
   rq.y = double( args[ 1 ] );
   sum@Sum( rq )( result );
-  println@Console( result )()
+  println@Console( result.result )()
 }
