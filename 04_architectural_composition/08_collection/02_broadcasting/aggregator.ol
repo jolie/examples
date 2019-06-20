@@ -1,7 +1,6 @@
 include "locations.iol"
 include "printer.iol"
 include "console.iol"
-include "logger.iol"
 
 execution { concurrent }
 
@@ -17,12 +16,6 @@ Protocol: sodep
 Interfaces: PrinterInterface
 }
 
-outputPort Logger {
-Location: Location_Logger
-Protocol: sodep
-Interfaces: LoggerInterface
-}
-
 inputPort AggregatorInput {
 Location: Location_Aggregator
 Protocol: sodep
@@ -36,7 +29,6 @@ courier AggregatorInput {
 	[ interface PrinterInterface( request ) ] {
 				forward Printer1( request ) | forward Printer2( request )
 	}
-
 }
 
 init
