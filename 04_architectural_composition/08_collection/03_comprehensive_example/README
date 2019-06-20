@@ -1,0 +1,27 @@
+This directory contains the following content:
+- jolie-bin: a binary distribution of the JOLIE interpreter;
+- jolie: a Unix/Linux/MacOSX launcher for executing the example;
+- jolie.bat: a Windows launcher for executing the example;
+- the JOLIE code for the smart aggregation example.
+
+The source code of the updated version of the JOLIE interpreter can be downloaded
+from the JOLIE source code Subversion repository, see:
+http://www.jolie-lang.org/source_code.php
+
+Before starting the example, be sure that the following TCP ports are not used by other applications:
+9000, 9001, 9002, 9003, 9009
+
+To start the example, launch the following commands (in order) in separate shells.
+The presence of Java version 1.6 (or Java6) is required.
+Use the jolie launcher if you are under a *nix system (e.g., Linux and MacOS X), or jolie.bat if you are under a Windows system.
+
+- jolie printer1.ol
+- jolie printer2.ol
+- jolie fax.ol
+- jolie logger.ol
+- jolie aggregator.ol
+- jolie client.ol
+
+The services will interact and each one will print some logging messages on screen.
+The smart aggregator will redirect the client's requests to the appropriate printer or fax.
+The last request from the client has an invalid key, and will be rejected.
