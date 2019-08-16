@@ -1,5 +1,10 @@
 type GetTemperatureRequest: void {
-  .city: string
+  .city: string {
+      .place?: void {
+          .longitude: string 
+          .latittude: string
+      }
+  }
 }
 
 type GetWindRequest: void {
