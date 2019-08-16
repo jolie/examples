@@ -1,5 +1,4 @@
 include "ForecastInterface.iol"
-include "console.iol"
 
 execution{ concurrent }
 
