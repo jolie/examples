@@ -13,5 +13,6 @@ This creates a docker image called `hello` is the name of the image.
 # Run the container
 
 ```
-docker run -d --name hello-cnt -p 8000:8000 hello
+docker run -d --name hello-cnt -p 8000:8000 -e TESTVAR=spiderman hello
 ```
+Note that the environment variable `TESTVAR` is initialized with value `spiderman`
