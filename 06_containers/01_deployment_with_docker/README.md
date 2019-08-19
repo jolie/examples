@@ -13,5 +13,5 @@ This creates a docker image called `hello` is the name of the image.
 # Run the container
 
 ```
-docker run --name hello-cnt -p 8000:8000 hello
+docker run -d --name hello-cnt -p 8000:8000 hello
 ```
