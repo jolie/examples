@@ -1,0 +1,9 @@
+FROM jolielang/jolie
+MAINTAINER Claudio Guidi <guidiclaudio@gmail.com> 
+EXPOSE 8000
+RUN mkdir micro
+WORKDIR micro
+COPY forecastService.ol main.ol
+RUN mkdir interfaces
+COPY interfaces/forecastInterface.iol interfaces/forecastInterface.iol
+CMD jolie main.ol
