@@ -1,20 +1,22 @@
-# Dockerization of a system of services
+# Using Jocker for dockerizing a system of Jolie services
+In this example we exploit [Jocker](https://github.com/jolie/jocker) for managing container on Docker.
+In particular here we show how to orchestrate docker using Jocker for deploying a system of three Jolie services:
 As a first step, create the images of the three microservices:
-- `docker build -t forecast_img -f DockerfileForecastService .`
-- `docker build -t traffic_img -f DockerfileTrafficService .`
-- `docker build -t info_img -f DockerfileInfoService .`
+- ForecastService
+- TrafficService
+- InfoService: it is an orchestrator which collects information from both the TrafficService and the ForecastService
 
-Then create a network where the services will operate:
+Before running the orchestrator which is in charge to deploy the system into Docker, download and run the Jocker container using the following commands:
+
 ```
-docker network create testnet
+docker pull jolielang/jocker
+docker run -it -p 8008:8008 --name jocker -v /var/run:/var/run jolielang/jocker
 ```
 
-Finally, creates the three containers:
-- `docker run -it -d --name forecast --network testnet forecast_img`
-- `docker run -it -d --name traffic --network testnet traffic_img`
-- `docker run -it -d --name info -p 8002:8000 -v <PATH TO config.ini>:/var/temp --network testnet info_img`
+Once Jocker is running, just execute the Jolie orchestrator for deploying the system:
 
-Note that the container `info` which executes the orchestrator requires a file `config.ini` to be run. In order to pass such a file it is necessary to set a volume for the container which maps the host directory where the config.ini file is, to the internal container directory `/var/temp`.
+```
+jolie jockerOrchestrator.ol
+```
 
-Then run the `client.ol` with a city name as a parameter.
-try with Rome, Cesena or what you want
+Note that the orchesstrator creates, uses and destroys the system thus at the end of the execution there will not be contaneiners and images registered inside the docker server.
