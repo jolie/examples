@@ -1,4 +1,4 @@
-# jolier usaeg example
+# jolier usage example
 In this example it is possible to experiment how `jolier` works.
 Here there is a target service called `demo.ol` which can be deployed by simply
 typing the following command in the shell:
