@@ -80,7 +80,7 @@ type FaultTestType: void {
 interface DemoInterface {
   RequestResponse:
     getOrders( GetOrdersRequest )( GetOrdersResponse ),
-    getOrdersByIItem( GetOrdersByItemRequest )( GetOrdersByItemResponse ) throws FaultTest( FaultTestType ),
+    getOrdersByItem( GetOrdersByItemRequest )( GetOrdersByItemResponse ) throws FaultTest( FaultTestType ),
     putOrder( PutOrderRequest )( PutOrderResponse ),
     deleteOrder( DeleteOrderRequest )( DeleteOrderResponse )
 }

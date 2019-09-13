@@ -1,6 +1,6 @@
 {
     "getOrders":"method=get, template=/orders/{userId}?maxItems={maxItems}",
-    "getOrdersByIItem":"method=post",
+    "getOrdersByItem":"method=post",
     "putOrder":"method=put",
     "deleteOrder":"method=delete"
 }

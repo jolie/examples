@@ -106,7 +106,7 @@ main {
       response.orders -> global.orders
   }]
 
-  [ getOrdersByIItem( request )( response ) {
+  [ getOrdersByItem( request )( response ) {
       if ( request.quantity > 1 ) {
          f.message = "test message"
          f.code = 100
