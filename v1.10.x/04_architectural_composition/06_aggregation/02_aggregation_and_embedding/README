@@ -1,0 +1,6 @@
+To start the example, launch the following commands (in order) in separate shells.
+
+- jolie aggregator.ol
+- jolie client.ol
+
+It is worth noting that the aggregator.ol both embeds and aggregates printer.ol and fax.ol

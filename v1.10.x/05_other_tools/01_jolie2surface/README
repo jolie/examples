@@ -1,0 +1,13 @@
+To start the example, launch the following commands (in order) in separate shells.
+
+- jolie printer.ol
+- jolie fax.ol
+- jolie aggregator.ol
+- jolie client.ol
+
+You will notice that the client.ol won't work because it is missing the AggregatorInterface.iol file.
+Try to create the surface at the inputPort of the service aggregator launching the following command:
+
+jolie2surface aggregator.ol Aggregator > AggregatorSurface.iol
+
+Retry running the client.ol now!
