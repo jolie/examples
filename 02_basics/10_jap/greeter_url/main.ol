@@ -1,6 +1,6 @@
 include "console.iol"
 
-include "jap:file:greeter.jap!/greeter/interfaces/GreeterAPI.iol"
+include "jap:file:./lib/greeter.jap!/greeter/interfaces/GreeterAPI.iol"
 // include "jap-src/greeter/interfaces/GreeterAPI.iol"
 
 outputPort Greeter { interfaces: GreeterAPI }
