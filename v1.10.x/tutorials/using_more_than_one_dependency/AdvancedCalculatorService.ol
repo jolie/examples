@@ -55,8 +55,9 @@ service AdvancedCalculatorService {
         [ percentage( request )( response ) {
             {
                 div@Calculator( { dividend = request.term, divisor = 100.0 })( div_res )
-                mul@Calculator( { factor[0] = div_res, factor[1] = request.percentage })( response )
-                }
+                mul@Calculator( { factor[0] = div_res, factor[1] = request.percentage })( response_mul )
+                response = response_mul
+            }
             |
             {
                 random@Chuck()( chuck_res )
