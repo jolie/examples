@@ -1,5 +1,5 @@
 type FactorialRequest: void {
-    term[1,*]: int
+    term: int
 }
 type FactorialResponse: void {
     factorial: long 
