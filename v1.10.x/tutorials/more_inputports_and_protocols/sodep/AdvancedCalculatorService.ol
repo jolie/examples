@@ -39,6 +39,12 @@ service AdvancedCalculatorService {
          interfaces: AdvancedCalculatorInterface
     }
 
+    inputPort AdvancedCalculatorPortSODEP {
+        location: "socket://localhost:8003"
+        protocol: sodep 
+        interfaces: AdvancedCalculatorInterface
+    }
+
     main {
         [ factorial( request )( response ) {
             for( i = request.term, i > 0, i-- ) {

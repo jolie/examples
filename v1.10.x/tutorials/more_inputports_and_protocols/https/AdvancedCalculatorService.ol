@@ -39,6 +39,22 @@ service AdvancedCalculatorService {
          interfaces: AdvancedCalculatorInterface
     }
 
+    inputPort AdvancedCalculatorPortSODEP {
+        location: "socket://localhost:8003"
+        protocol: sodep 
+        interfaces: AdvancedCalculatorInterface
+    }
+
+    inputPort AdvancedCalculatorPortHTTPS {
+         location: "socket://localhost:8004"
+         protocol: https { 
+             format = "json",
+             ssl.keyStore = "keystore.jks",
+             ssl.keyStorePassword = "jolie!"
+         }
+         interfaces: AdvancedCalculatorInterface
+    }
+
     main {
         [ factorial( request )( response ) {
             for( i = request.term, i > 0, i-- ) {
