@@ -9,11 +9,6 @@
             "moduleOverview": "TWO",
             "moduleName": "TWO",
             "moduleId": "TWO"
-        },
-        {
-            "moduleOverview": "THREE",
-            "moduleName": "THREE",
-            "moduleId": "THREE"
         }
     ]
-}
+}.*
