@@ -1,12 +1,10 @@
 from .calculator-interface import CalculatorInterface
-from types.Binding import Binding
 
-service Calculator( params:Binding ) {
+service Calculator {
 	execution: concurrent
 
 	inputPort CalculatorPort {
-		location: params.location
-		protocol: params.protocol
+		location: "local"
 		interfaces: CalculatorInterface
 	}     
 
