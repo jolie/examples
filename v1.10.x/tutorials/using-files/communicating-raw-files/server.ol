@@ -11,7 +11,7 @@ service ExampleServer {
 
 embed File as file    
 
-inputPort Server {
+inputPort server {
     Location: "socket://localhost:9000"
     Protocol: sodep
     Interfaces: ServerInterface
