@@ -1,5 +1,11 @@
-include "ServerInterface.iol"
-include "file.iol"
+from .ServerInterface import ServerInterface
+from file import File
+
+
+
+service ExampleClient{
+
+embed File as file
 
 outputPort Server {
     Location: "socket://localhost:9000"
@@ -14,4 +20,6 @@ main {
     }
     readFile@File( f )( rq.content )
     setFile@Server( rq )()
+}
+
 }
