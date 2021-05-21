@@ -1,9 +1,18 @@
 /* file.iol is the service which provides operations for dealing with files available in the standard library of Jolie */
-include "file.iol"
-include "console.iol"
+from file import File
+from console import Console
 
-main {
-    request.filename = "test.txt"
-    readFile@File( request )( response )
-    println@Console( response )()
+service Example {
+
+    embed Console as console
+    embed File as file
+
+
+    main {
+
+        readFile@file( { filename = "test.txt"} )( response )
+        println@console( response )()
+    }
+
+
 }

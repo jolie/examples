@@ -1,14 +1,24 @@
-include "ServerInterface.iol"
-include "file.iol"
+from ./ServerInterface import ServerInterface
+from file import File
 
-outputPort Server {
+service ExampleClient{
+
+embed File as file
+
+outputPort server {
     Location: "socket://localhost:9000"
     Protocol: sodep
     Interfaces: ServerInterface
 }
 
 main {
-    f.filename = "source.txt"
-    readFile@File( f )( content )
-    setFileContent@Server( content )()
+    
+    readFile@file( {filename = "source.txt"} )( content )
+    setFileContent@server( content )()
 }
+
+
+
+
+}
+

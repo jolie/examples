@@ -1,9 +1,12 @@
-include "file.iol"
+from file import File
 
-main {
-    with( request ) {
-        .filename = "test.txt";
-        .content = "this is a test message"
+service Example{
+    embed File as file 
+
+    main{
+        writeFile@file( {
+            filename = "test.txt"
+            content = "this is a test message"
+        } )()
     }
-    writeFile@File( request )()
 }
