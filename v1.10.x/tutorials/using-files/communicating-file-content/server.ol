@@ -1,25 +1,34 @@
-include "ServerInterface.iol"
-include "file.iol"
-
-execution{ concurrent }
-
-inputPort Server {
-    Location: "socket://localhost:9000"
-    Protocol: sodep
-    Interfaces: ServerInterface
-}
+from .ServerInterface import ServerInterface
+from file import File
 
 constants {
     FILENAME = "received.txt"
 }
 
+
+service ExampleServer {
+
+ 
+embed File as file
+
+inputPort server {
+    Location: "socket://localhost:9000"
+    Protocol: sodep
+    Interfaces: ServerInterface
+}
+
+
+execution:concurrent
+
 main {
     setFileContent( request )( response ) {
-        with( rq_w ) {
-            .filename = FILENAME;
-            .content = request;
-            .append = 1
-        }
-        writeFile@File( rq_w )()
+        writeFile@File( {
+            filename = FILENAME
+            content = request
+            append = 1
+        } )()
     }
 }
+
+}
+
