@@ -1,4 +1,4 @@
-from ./ServerInterface.ServerInterface import ServerInterface
+from .ServerInterface import ServerInterface
 from file import File
 
 constants {
