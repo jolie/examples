@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="example.jolie.org.wsdl" xmlns:xsd1="example.jolie.org.xsd" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="example.jolie.org.wsdl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+    <xs:schema targetNamespace="example.jolie.org.xsd" xmlns:sch="example.jolie.org.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema"><xs:element name="average"><xs:complexType><xs:sequence><xs:element maxOccurs="unbounded" minOccurs="0" name="term" type="xs:int"/></xs:sequence></xs:complexType></xs:element><xs:element name="averageResponse"><xs:complexType><xs:sequence><xs:element maxOccurs="1" minOccurs="1" name="average" type="xs:double"/><xs:element maxOccurs="1" minOccurs="1" name="advertisement" type="xs:string"/></xs:sequence></xs:complexType></xs:element><xs:element name="factorial"><xs:complexType><xs:sequence><xs:element maxOccurs="1" minOccurs="1" name="term" type="xs:int"/></xs:sequence></xs:complexType></xs:element><xs:element name="factorialResponse"><xs:complexType><xs:sequence><xs:element maxOccurs="1" minOccurs="1" name="factorial" type="xs:long"/><xs:element maxOccurs="1" minOccurs="1" name="advertisement" type="xs:string"/></xs:sequence></xs:complexType></xs:element><xs:element name="percentage"><xs:complexType><xs:sequence><xs:element maxOccurs="1" minOccurs="1" name="percentage" type="xs:double"/><xs:element maxOccurs="1" minOccurs="1" name="term" type="xs:double"/></xs:sequence></xs:complexType></xs:element><xs:element name="percentageResponse"><xs:complexType><xs:sequence><xs:element maxOccurs="1" minOccurs="1" name="result" type="xs:double"/><xs:element maxOccurs="1" minOccurs="1" name="advertisement" type="xs:string"/></xs:sequence></xs:complexType></xs:element></xs:schema>
+  </wsdl:types>
+  <wsdl:message name="PercentageResponse">
+    <wsdl:part name="body" element="xsd1:percentageResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="FactorialRequest">
+    <wsdl:part name="body" element="xsd1:factorial">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="PercentageRequest">
+    <wsdl:part name="body" element="xsd1:percentage">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="FactorialResponse">
+    <wsdl:part name="body" element="xsd1:factorialResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AverageRequest">
+    <wsdl:part name="body" element="xsd1:average">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AverageResponse">
+    <wsdl:part name="body" element="xsd1:averageResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="AdvancedCalculatorPortSOAPS">
+    <wsdl:operation name="average">
+      <wsdl:input message="tns:AverageRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:AverageResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="factorial">
+      <wsdl:input message="tns:FactorialRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:FactorialResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="percentage">
+      <wsdl:input message="tns:PercentageRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:PercentageResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AdvancedCalculatorPortSOAPSSOAPBinding" type="tns:AdvancedCalculatorPortSOAPS">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="average">
+      <soap:operation soapAction="average" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="factorial">
+      <soap:operation soapAction="factorial" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="percentage">
+      <soap:operation soapAction="percentage" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AdvancedCalculatorPortSOAPSService">
+    <wsdl:port name="AdvancedCalculatorPortSOAPSServicePort" binding="tns:AdvancedCalculatorPortSOAPSSOAPBinding">
+      <soap:address location="https://localhost:8005"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -58,7 +58,7 @@ service AdvancedCalculatorService {
     inputPort AdvancedCalculatorPortSOAPS {
          location: "socket://localhost:8005"
          protocol: soaps {
-             wsdl = "AdvancedCalculator.wsdl",
+             wsdl = "AdvancedCalculatorSOAPS.wsdl",
              wsdl.port = "AdvancedCalculatorPortSOAPServicePort",
              ssl.keyStore = "keystore.jks",
              ssl.keyStorePassword = "jolie!"
