@@ -1,17 +1,26 @@
-include "ServerInterface.iol"
-include "file.iol"
+from .ServerInterface import ServerInterface
+from file import File
 
-outputPort Server {
-    Location: "socket://localhost:9000"
-    Protocol: sodep
-    Interfaces: ServerInterface
-}
 
-main {
-    with( f ) {
-        .filename = "source.pdf";
-        .format = "binary"
+
+service ExampleClient{
+
+    embed File as file
+
+    outputPort server {
+        Location: "socket://localhost:9000"
+        Protocol: sodep
+        Interfaces: ServerInterface
     }
-    readFile@File( f )( rq.content )
-    setFile@Server( rq )()
+
+    main {
+        
+        readFile@file( {
+            filename = "source.pdf"
+            format = "binary"
+        } )( rq.content )
+        
+        setFile@server( rq )()
+    }
+
 }
