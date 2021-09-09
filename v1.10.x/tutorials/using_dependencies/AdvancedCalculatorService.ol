@@ -3,7 +3,7 @@ from CalculatorInterfaceModule import CalculatorInterface
 
 service AdvancedCalculatorService {
 
-    execution{ concurrent }
+    execution: concurrent
 
     outputPort Calculator {
          location: "socket://localhost:8000"
