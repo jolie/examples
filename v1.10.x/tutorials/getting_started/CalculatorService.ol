@@ -1,8 +1,11 @@
 from CalculatorInterfaceModule import CalculatorInterface
+from console import Console
 
  service CalculatorService {
 
      execution{ concurrent }
+
+     embed Console as Console
 
      inputPort CalculatorPort {
          location: "socket://localhost:8000"
