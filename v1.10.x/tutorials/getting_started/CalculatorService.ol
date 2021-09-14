@@ -3,7 +3,7 @@ from console import Console
 
  service CalculatorService {
 
-     execution{ concurrent }
+     execution: concurrent
 
      embed Console as Console
 
