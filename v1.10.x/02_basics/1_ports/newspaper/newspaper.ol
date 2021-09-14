@@ -1,21 +1,24 @@
-include "NewsPaperInterface.iol"
+from NewsPaperInterface import NewsPaperInterface
 
-execution{ concurrent }
 
-inputPort NewsPaperPort {
-  Location:"auto:ini:/Locations/NewsPaperPort:file:locations.ini"
-  Protocol: sodep
-  Interfaces: NewsPaperInterface
-}
+service NewsPaper {
+  execution: concurrent 
 
-/*
-the service collects news from authors (by means of operation sendNews).
-users can see news by invoking operation getNews.
-News are stored into a global variable called news */
-main {
-    [ getNews( request )( response ) {
-        response.news -> global.news
-    }]
+  inputPort NewsPaperPort {
+    location:"auto:ini:/Locations/NewsPaperPort:file:locations.ini"
+    protocol: sodep
+    interfaces: NewsPaperInterface
+  }
 
-    [ sendNews( request ) ] { global.news[ #global.news ] << request }
+  /*
+  the service collects news from authors (by means of operation sendNews).
+  users can see news by invoking operation getNews.
+  News are stored into a global variable called news */
+  main {
+      [ getNews( request )( response ) {
+          response.news -> global.news
+      }]
+
+      [ sendNews( request ) ] { global.news[ #global.news ] << request }
+  }
 }
