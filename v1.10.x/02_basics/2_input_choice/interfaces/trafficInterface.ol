@@ -1,5 +1,5 @@
-type GetTrafficRequest: void {
-  .city: string
+type GetTrafficRequest {
+  city: string
 }
 
 
