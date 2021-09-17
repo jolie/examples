@@ -1,24 +1,25 @@
-include "interfaces/trafficInterface.iol"
-include "config.iol"
-include "console.iol"
+from interfaces.trafficInterface import TrafficInterface
 
-execution{ concurrent }
+service TrafficServce () {
 
-inputPort Traffic {
-Location: Traffic_location
-Protocol: sodep
-Interfaces: TrafficInterface
-}
+  execution: concurrent
+
+  inputPort Traffic {
+    location: "socket://localhost:8001"
+    protocol: sodep
+    interfaces: TrafficInterface
+  }
 
 
-main {
-  getData( request )( response ) {
-    if ( request.city == "Rome" ) {
-      response = "High"
-    } else if ( request.city == "Cesena" ) {
-      response = "Low"
-    } else {
-      response = "Undefined"
+  main {
+    getData( request )( response ) {
+      if ( request.city == "Rome" ) {
+        response = "High"
+      } else if ( request.city == "Cesena" ) {
+        response = "Low"
+      } else {
+        response = "Undefined"
+      }
     }
   }
 }

@@ -1,24 +1,25 @@
-include "interfaces/forecastInterface.iol"
-include "config.iol"
-include "console.iol"
+from interfaces.forecastInterface import ForecastInterface
 
-execution{ concurrent }
+service ForecastService {
 
-inputPort Forecast {
-Location: Forecast_location
-Protocol: sodep
-Interfaces: ForecastInterface
-}
+    execution: concurrent 
 
-
-main {
-  getTemperature( request )( response ) {
-    if ( request.city == "Rome" ) {
-      response = 32.4
-    } else if ( request.city == "Cesena" ) {
-      response = 30.1
-    } else {
-      response = 0.0
+    inputPort Forecast {
+      location: "socket://localhost:8000"
+      protocol: sodep
+      interfaces: ForecastInterface
     }
-  }
+
+
+    main {
+      getTemperature( request )( response ) {
+        if ( request.city == "Rome" ) {
+          response = 32.4
+        } else if ( request.city == "Cesena" ) {
+          response = 30.1
+        } else {
+          response = 0.0
+        }
+      }
+    }
 }

@@ -1,34 +1,38 @@
-include "interfaces/infoInterface.iol"
-include "interfaces/forecastInterface.iol"
-include "interfaces/trafficInterface.iol"
-include "config.iol"
-include "console.iol"
+from interfaces.infoInterface import InfoInterface
+from interfaces.forecastInterface import ForecastInterface
+from interfaces.trafficInterface import TrafficInterface
+from console import Console
 
-execution{ concurrent }
 
-outputPort Forecast {
-Location: Forecast_location
-Protocol: sodep
-Interfaces: ForecastInterface
-}
+service InfoService {
+    execution: concurrent
 
-outputPort Traffic {
-Location: Traffic_location
-Protocol: sodep
-Interfaces: TrafficInterface
-}
+    embed Console as Console
 
-inputPort MySelf {
-Location: GetInfo_location
-Protocol: sodep
-Interfaces: GetInfoInterface
-}
+    outputPort Forecast {
+      location: "socket://localhost:8000"
+      protocol: sodep
+      interfaces: ForecastInterface
+    }
 
-main {
-  getInfo(request)(response) {
-    getTemperature@Forecast( request )( response.temperature )
-    |
-    getData@Traffic( request )( response.traffic )
-  };
-  println@Console("Request served!")()
+    outputPort Traffic {
+      location: "socket://localhost:8001"
+      protocol: sodep
+      interfaces: TrafficInterface
+    }
+
+    inputPort MySelf {
+      location: "socket://localhost:8002"
+      protocol: sodep
+      interfaces: InfoInterface
+    }
+
+    main {
+      getInfo(request)(response) {
+        getTemperature@Forecast( request )( response.temperature )
+        |
+        getData@Traffic( request )( response.traffic )
+      }
+      println@Console("Request served!")()
+    }
 }

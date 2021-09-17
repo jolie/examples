@@ -1,5 +1,5 @@
-type GetTemperatureRequest: void {
-  .city: string
+type GetTemperatureRequest {
+  city: string
 }
 
 interface ForecastInterface {
