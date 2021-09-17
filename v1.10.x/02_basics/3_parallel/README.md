@@ -2,7 +2,7 @@ This example requires jolie > v1.10.x
 
 ![](https://docs.jolie-lang.org/v1.10.x/.gitbook/assets/arch_parallel_example.png)
 
-In this example service `infoService` compose in parallel thw two calls towards `trafficService` and `forecastService`.
+In this example service `infoService` composes in parallel thw two calls towards `trafficService` and `forecastService`.
 
 Run the following services into different consoles:
 - infoService.ol
