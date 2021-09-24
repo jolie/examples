@@ -1,3 +1,4 @@
+
 Here we discuss a simple example where both OneWay/Notification and RequestResponse/SolicitResponse primitives are used. The complete code can be checked and downloaded at this [link](https://github.com/jolie/examples/tree/master/v1.10.x/02_basics/1_ports/newspaper).
 
 The example's architecture is reported below.
