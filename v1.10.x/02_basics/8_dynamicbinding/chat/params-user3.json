@@ -1,0 +1,5 @@
+{
+    "location":"socket://localhost:8003",
+    "chat_name": "test-chat",
+    "username": "user3"
+}

@@ -1,48 +1,76 @@
-include "console.iol"
-include "runtime.iol"
+from ChatRegistryInterface import ChatRegistryInterface
+from UserInterface import UserInterface
+from console import ConsoleInputInterface
+from console import Console
+from runtime import Runtime
 
-include "ChatRegistryInterface.iol"
-
-outputPort ChatRegistry {
-  Location: "socket://localhost:9000"
-  Protocol: sodep
-  Interfaces: ChatRegistryInterface
+type UserParams {
+  location: string 
+  chat_name: string 
+  username: string
 }
 
-init {
-  registerForInput@Console()()
+type UserListenerParams {
+  location: string
 }
 
-/*  args[0] specifies the listening location,
-    args[1] specifies the name of the chat,
-    args[2] specifies the username */
-init {
-    if ( #args != 3 ) {
-      println@Console( "Usage: jolie user.ol <location> <chat_name> <username>")();
-      throw( Error )
-    }
-    ;
-    /* dynamic embedding of user_service.ol */
-    with( emb ) {
-        .filepath = "-C LOCATION=\"" + args[ 0 ] + "\" user_service.ol";
-        .type = "Jolie"
-    };
-    loadEmbeddedService@Runtime( emb )();
-    _location = args[0];
-    _chat_name = args[1];
-    _username = args[2]
+service UserListener ( p : UserListenerParams ) {
+/* this service is embedded within user.ol and it is in charge to receive messages from the chat registry */
+  execution: concurrent
+
+  embed Console as Console 
+
+  inputPort User {
+    location: p.location
+    protocol: sodep
+    interfaces: UserInterface
+  }
+
+  init {
+    println@Console("Running listener on location " + p.location )()
+  }
+
+  main {
+    setMessage( request );
+        print@Console( request.username + "@" + request.chat_name + ":" )()
+        println@Console( request.message )()
+  }
 }
 
-main {
-    with( add_req ) {
-        .chat_name = args[1];
-        .username = args[2];
-        .location = args[0]
-    };
-    addChat@ChatRegistry( add_req )( add_res );
-    token = add_res.token;
-    while( cmd != "exit" ) {
-        in( message );
-        sendMessage@ChatRegistry( { .token = token, .message=message } )()
-    }
+service User ( p: UserParams ) {
+
+  embed UserListener( { location = p.location } ) 
+  embed Console as Console 
+
+  inputPort ConsoleInputPort {
+	  location: "local"
+	  interfaces: ConsoleInputInterface
+	}
+
+  outputPort ChatRegistry {
+    location: "socket://localhost:9000"
+    protocol: sodep
+    interfaces: ChatRegistryInterface
+  }
+
+  init {
+    registerForInput@Console()()
+    println@Console("Started a user client for username:" + p.username )()
+    println@Console("Type `stop` for exiting")()
+  }
+
+  main {
+      add_req << {
+          chat_name = p.chat_name
+          username = p.username
+          location = p.location
+      }
+      addChat@ChatRegistry( add_req )( add_res )
+      println@Console("Added to chat:" + p.chat_name )()
+      token = add_res.token;
+      while( text != "stop" ) {
+          in( text )
+          sendMessage@ChatRegistry( { token = token, message = text } )()
+      }
+  }
 }
