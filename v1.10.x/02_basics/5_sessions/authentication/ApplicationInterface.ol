@@ -1,21 +1,21 @@
 type LoginRequest: void
 
-type LoginResponse: void {
-    .auth_token: string
-    .identity_provider_location: string
+type LoginResponse {
+    auth_token: string
+    identity_provider_location: string
 }
 
-type ExitApplicationRequest: void {
-    .session_id: string
+type ExitApplicationRequest {
+    session_id: string
 }
 
-type GetResultRequest: void {
-    .session_id: string
+type GetResultRequest {
+    session_id: string
 }
 
-type PrintMessageRequest: void {
-    .session_id: string
-    .message: string
+type PrintMessageRequest {
+    session_id: string
+    message: string
 }
 
 interface ApplicationInterface {

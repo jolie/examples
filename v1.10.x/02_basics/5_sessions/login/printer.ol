@@ -2,16 +2,16 @@ from PrinterInterface import PrinterInterface
 from PrinterInterface import Message	// we need to import also type Message to be used in the cset
 from console import Console
 
-
-/* here we define the correlation set we will use for correlating messages inside the same session */
-cset {
-	/* sid is the variable used inside the session to identify the correlation set.
-	   The values which come from messages whose type is OpMessage and the node is .sid will be stored
-	   inside variable sid as identification key */
-	sid: Message.sid
-}
-
 service Printer {
+
+	/* here we define the correlation set we will use for correlating messages inside the same session */
+	cset {
+		/* sid is the variable used inside the session to identify the correlation set.
+	   	The values which come from messages whose type is OpMessage and the node is .sid will be stored
+	   	inside variable sid as identification key */
+		sid: Message.sid
+	}
+
 
 	embed Console as Console 
 

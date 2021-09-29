@@ -1,8 +1,8 @@
-type AuthenticationResult: void {
-    .auth_token: string
+type AuthenticationResult {
+    auth_token: string
 }
-type SessionId: void {
-    .session_id: string 
+type SessionId {
+    session_id: string 
 }
 
 interface ApplicationAdminInterface {
