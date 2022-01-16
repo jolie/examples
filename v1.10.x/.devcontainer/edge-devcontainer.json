@@ -1,0 +1,6 @@
+{
+  "image": "jolielang/jolie:edge",
+  "extensions": [
+    "jolie.vscode-jolie"
+  ]
+}
