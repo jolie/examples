@@ -1,0 +1,6 @@
+{
+  "image": "jolielang/jolie:1.10.5",
+  "extensions": [
+    "jolie.vscode-jolie"
+  ]
+}
