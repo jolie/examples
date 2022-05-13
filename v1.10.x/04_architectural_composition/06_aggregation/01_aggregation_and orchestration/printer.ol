@@ -1,24 +1,27 @@
-include "locations.iol"
-include "printer.iol"
-include "console.iol"
+from .PrinterInterface import PrinterInterface
+from console import Console 
 
-execution { concurrent }
+service Printer {
+	execution: concurrent
 
-inputPort PrinterInput {
-Location: Location_Printer
-Protocol: sodep
-Interfaces: PrinterInterface
-}
+	embed Console as Console
 
-main
-{
-	[ print( request )( response ) {
-		jobId = new;
-		println@Console( "Printing job id: " + jobId + ". Content: " + request.content )();
-		response.jobId = jobId
-	}]
+	inputPort PrinterInput {
+		location: "socket://localhost:9000"
+		protocol: sodep
+		interfaces: PrinterInterface
+	}
 
-	[ del( request ) ] {
-		println@Console( "Deleting job id: " + request.jobId )()
+	main
+	{
+		[ print( request )( response ) {
+			jobId = new;
+			println@Console( "Printing job id: " + jobId + ". Content: " + request.content )();
+			response.jobId = jobId
+		}]
+
+		[ del( request ) ] {
+			println@Console( "Deleting job id: " + request.jobId )()
+		}
 	}
 }
