@@ -1,9 +1,9 @@
-type JobID: void {
-	.jobId: string
+type JobID {
+	jobId: string
 }
 
-type PrintRequest:void {
-	.content:string
+type PrintRequest {
+	content: string
 }
 
 type PrintResponse: JobID

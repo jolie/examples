@@ -1,18 +1,21 @@
-include "fax.iol"
-include "locations.iol"
-include "console.iol"
+from .FaxInterface import FaxInterface
+from console import Console
 
-execution { concurrent }
+service Fax {
+	execution: concurrent 
 
-inputPort FaxInput {
-Location: Location_Fax
-Protocol: soap { .wsdl = "fax.wsdl"; .debug=false; .debug.showContent=true }
-Interfaces: FaxInterface
-}
+	embed Console as Console
 
-main
-{
-	fax( request )() {
-			println@Console( "Faxing to " + request.destination + ". Content: " + request.content )()
+	inputPort FaxInput {
+		location: "socket://localhost:9001"
+		protocol: soap { .wsdl = "fax.wsdl"; .debug=false; .debug.showContent=true }
+		interfaces: FaxInterface
+	}
+
+	main
+	{
+		fax( request )() {
+				println@Console( "Faxing to " + request.destination + ". Content: " + request.content )()
+		}
 	}
 }
