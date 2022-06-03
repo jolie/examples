@@ -1,12 +1,14 @@
-include "OperationInterface.iol"
+from OperationInterface import OperationInterface
 
-inputPort Op {
-  Location:"local"
-  Interfaces: OperationInterface
-}
+service Sub {
+  inputPort Op {
+    Location:"local"
+    Interfaces: OperationInterface
+  }
 
-main {
-  run( request )( response ) {
-    response = request.x - request.y
+  main {
+    run( request )( response ) {
+      response = request.x - request.y
+    }
   }
 }

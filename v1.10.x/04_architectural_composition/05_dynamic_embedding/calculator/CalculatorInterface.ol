@@ -1,6 +1,6 @@
-type RequestType: void {
-  .x: double
-  .y: double
+type RequestType {
+  x: double
+  y: double
 }
 
 interface CalculatorInterface {
