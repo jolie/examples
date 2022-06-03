@@ -1,29 +1,30 @@
-include "CleanBrInterface.iol"
-include "CleanDivInterface.iol"
+from CleanBrInterface import CleanBrInterface
+from CleanDivInterface import CleanDivInterface
+from string_utils import StringUtils
+from clean_br import CleanBr
 
-include "string_utils.iol"
+service CleanDiv {
 
-execution{ concurrent }
+    execution: concurrent
 
-outputPort CleanBr {
-  Interfaces: CleanBrInterface
-}
+    outputPort CleanBr {
+      Interfaces: CleanBrInterface
+    }
 
-embedded {
-  Jolie:
-    "clean_br.ol" in CleanBr
-}
+    embed StringUtils as StringUtils
+    embed CleanBr in CleanBr
 
-inputPort CleanDiv {
-  Location: "socket://localhost:9000"
-  Protocol: sodep
-  Interfaces: CleanDivInterface
-}
+    inputPort CleanDiv {
+      Location: "socket://localhost:9000"
+      Protocol: sodep
+      Interfaces: CleanDivInterface
+    }
 
-main {
-    cleanDiv( request )( response ) {
-        replaceAll@StringUtils( request { .regex="<div>", .replacement="" })( request );
-        replaceAll@StringUtils( request { .regex="</div>", .replacement="\n" })( request );
-        cleanBr@CleanBr( request )( response )
+    main {
+        cleanDiv( request )( response ) {
+            replaceAll@StringUtils( request { regex="<div>", replacement="" })( request )
+            replaceAll@StringUtils( request { regex="</div>", replacement="\n" })( request )
+            cleanBr@CleanBr( request )( response )
+        }
     }
 }

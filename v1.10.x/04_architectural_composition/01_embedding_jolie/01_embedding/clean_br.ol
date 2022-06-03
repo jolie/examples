@@ -1,17 +1,22 @@
-include "CleanBrInterface.iol"
-include "string_utils.iol"
+from CleanBrInterface import CleanBrInterface
+from string_utils import StringUtils
 
-execution{ concurrent }
 
-inputPort CleanBr {
-  Location: "local"
-  Protocol: sodep
-  Interfaces: CleanBrInterface
-}
+service CleanBr {
+  execution: concurrent 
 
-main {
-    cleanBr( request )( response ) {
-        replaceAll@StringUtils( request { .regex="<br>", .replacement="\n" })( request );
-        replaceAll@StringUtils( request { .regex="</br>", .replacement="\n" })( response )
-    }
+  embed StringUtils as StringUtils
+
+  inputPort CleanBr {
+    Location: "local"
+    Protocol: sodep
+    Interfaces: CleanBrInterface
+  }
+
+  main {
+      cleanBr( request )( response ) {
+          replaceAll@StringUtils( request { regex="<br>", replacement="\n" })( request )
+          replaceAll@StringUtils( request { regex="</br>", replacement="\n" })( response )
+      }
+  }
 }
