@@ -1,6 +1,15 @@
 {
-    "getOrders":"method=get, template=/orders/{userId}?maxItems={maxItems}",
-    "getOrdersByItem":"method=post",
-    "putOrder":"method=put",
-    "deleteOrder":"method=delete"
+    "getOrders": {
+        "method":"get",
+        "template":"/orders/{userId}?maxItems={maxItems}"
+    },
+    "getOrdersByItem": {
+        "method":"post"
+    },
+    "putOrder": {
+        "method":"put"
+    },
+    "deleteOrder": {
+        "method":"delete"
+    }
 }
