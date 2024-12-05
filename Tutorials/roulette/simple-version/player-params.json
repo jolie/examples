@@ -1,0 +1,10 @@
+{
+    "location": {
+        "this": "socket://localhost:10000",
+        "table": "socket://localhost:9000"
+    },
+    "player": {
+        "name": "player1",
+        "wallet": 1000
+    }
+}

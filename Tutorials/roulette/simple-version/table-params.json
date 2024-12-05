@@ -1,0 +1,6 @@
+{
+    "locations": {
+        "playerPort":"socket://localhost:9000",
+        "croupierPort":"socket://localhost:9001"
+    }
+}
