@@ -1,7 +1,5 @@
 
 from database import Database
-from runtime import Runtime
-from string_utils import StringUtils
 from file import File
 from zip-utils import ZipUtils
 from console import Console
@@ -22,8 +20,6 @@ constants {
 service Main {
 
     embed Database as Database
-    embed Runtime as Runtime
-    embed StringUtils as StringUtils
     embed File as File
     embed ZipUtils as ZipUtils
     embed Console as Console
