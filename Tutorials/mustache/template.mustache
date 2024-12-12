@@ -1,0 +1,28 @@
+{
+  "applicationName": "{{applicationName}}",
+  "version": "{{version}}",
+  "description": "{{description}}",
+  "author": {
+    "name": "{{author.name}}",
+    "email": "{{author.email}}"
+  },
+  "configuration": {
+    "environment": "{{configuration.environment}}", 
+    "port": {{configuration.port}},
+    "database": {
+      "host": "{{configuration.database.host}}",
+      "port": {{configuration.database.port}},
+      "name": "{{configuration.database.name}}",
+      "user": "{{configuration.database.user}}",
+      "password": "{{configuration.database.password}}"
+    }
+  },
+  "features": [
+    {{#features}}
+    {
+      "name": "{{name}}",
+      "enabled": {{enabled}}
+    }{{^last}},{{/last}}
+    {{/features}}
+  ]
+}
